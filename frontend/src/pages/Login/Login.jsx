@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import AuthForm from "../../components/auth/AuthForm";
 import AuthInput from "../../components/auth/AuthInput";
 
-import { login } from "../../services/authService";
+import { login, } from "../../services/authService";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -24,18 +24,14 @@ export default function Login() {
     try {
       setLoading(true);
 
-      const {
-        error,
-      } = await login(
-        email,
-        password
-      );
+      const { error, token } = await login(email, password);
 
       if (error) {
         throw error;
       }
 
-      navigate("/");
+      localStorage.setItem("token", token);
+      window.location.href = "/";
     } catch (err) {
       alert(err.message);
     } finally {
