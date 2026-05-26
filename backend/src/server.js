@@ -6,6 +6,7 @@ import userRoutes from "./routes/userRoutes.js  "
 import authRoute from "./routes/authRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js"
 import categoryRoutes from "./routes/categoryRoutes.js";
+import transactionRoutes from "./routes/transactionRoutes.js"
 
 dotenv.config();
 
@@ -44,6 +45,11 @@ app.use(
     "/api/categories",
     categoryRoutes
 );
+
+app.use(
+  "/api/transactions",
+  transactionRoutes
+)
 
 const PORT = process.env.PORT || 5000;
 
